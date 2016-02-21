@@ -19,7 +19,7 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../../css/dashboard.css" rel="stylesheet">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -44,8 +44,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="profile.html">Username</a></li>
-                <li><a href="home.html">Logout</a></li>
+                <li ><a href="register.view.html">Register</a></li>
+                <li class="active"><a href="login.view.html">Login</a></li>
+                <li><a href="../home/home.view.html">Home</a></li>
+                <li><a href="../home/home.view.html">Logout</a></li>
             </ul>
             <!--
             <form class="navbar-form navbar-right">
@@ -60,80 +62,38 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="admin.html">Admin</a></li>
-                <li class="active"><a href="forms.html">Forms</a></li>
+                <li><a href="../home/home.view.html">Home <span class="sr-only">(current)</span></a></li>
+                <li><a href="profile.view.html">Profile</a></li>
+                <li><a href="../admin/admin.view.html">Admin</a></li>
+                <li><a href="../forms/forms.view.html">Forms</a></li>
             </ul>
 
         </div>
 
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Admin</h1>
+            <h1 class="page-header">Login</h1>
 
+            <form class="form-horizontal" action="profile.view.html">
+                <div class="form-group">
+                    <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    </div>
+                </div>
 
-            <h2>Users</h2>
-            <ul class="nav nav-tabs">
-
-                <li class="active"><a href="#">Forms</a></li>
-                <li><a href="#">Fields</a></li>
-
-            </ul>
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>Form Name </th>
-                    <th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>Action</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <input type="text" class="form-control" id="inputUsername" placeholder="name">
-                    </td>
-
-                    <td>
-                        <a href="#" class="glyphicon glyphicon-plus"></a>
-                        <a href="#" class="glyphicon glyphicon-ok"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Registration Form
-                    </td>
-
-                    <td>
-                        <a href="#" class="glyphicon glyphicon-remove"></a>
-                        <a href="#" class="glyphicon glyphicon-pencil"></a>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Contact List
-                    </td>
-
-                    <td>
-                        <a href="#" class="glyphicon glyphicon-remove"></a>
-                        <a href="#" class="glyphicon glyphicon-pencil"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        To do list
-                    </td>
-                    <td>
-                        <a href="#" class="glyphicon glyphicon-remove"></a>
-                        <a href="#" class="glyphicon glyphicon-pencil"></a>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-
-
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
