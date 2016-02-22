@@ -1,3 +1,10 @@
-/**
- * Created by lohiy on 2/21/2016.
- */
+(function(){
+    angular
+        .module('FormBuilderApp')
+        .controller("HeaderController", HeaderController);
+
+    function HeaderController($scope) {
+
+
+    }
+})();
