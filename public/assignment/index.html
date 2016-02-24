@@ -22,6 +22,11 @@
     <script src="app.js"></script>
     <script src="config.js"></script>
     <script src="views/main/main.controller.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/sidebar/sidebar.controller.js"></script>
+    <script src="services/user.service.client.js"></script>
+    <script src="views/users/register.controller.js"></script>
+
 
 
     <!-- Custom styles for this template -->
@@ -39,7 +44,16 @@
 <body ng-controller="MainController">
 
 <div ng-include="'views/header/header.view.html'"></div>
-<div ng-include="'views/sidebar/sidebar.view.html'"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div ng-include="'views/sidebar/sidebar.view.html'"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div ng-view></div>
+            </div>
+
+    </div>
+</div>
 
 </body>
 </html>
