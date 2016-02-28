@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService ($http) {
+    function UserService () {
 
         var userInfo=[];
         userInfo=[
@@ -27,19 +27,21 @@
             updateUser: updateUser
 
         };
-
-
         return api;
 
         function findUserByCredentials(username, password, callback) {
 
+            var result={};
             for(var i=0;i<userInfo.length;i++){
-                var tempUser=userInfo[i];
-                if(tempUser.username==username&&tempUser.password==password)
-                    callback(tempUser);
-
+                if(userInfo[i].username==username&&userInfo[i].password==password) {
+                    console.log("User Found");
+                    angular.copy(userInfo[i], result);
+                    console.log(result);
+                    break;
+                }
             }
-            callback(null)
+
+            callback(result);
 
         }
 
@@ -47,21 +49,19 @@
             callback(userInfo);
         }
 
-
         function createUser(user, callback){
-            var tempUser = user.clo;
+            var tempUser ={}
+            angular.copy(user,tempUser);
             tempUser._id = (new Date).getTime();
             userInfo.push(tempUser);
             callback(tempUser);
-
         }
 
         function deleteUserById(userId, callback) {
-
             for(var i=0;i<userInfo.length;i++){
-                var tempUser = userInfo[i];
-                if(tempUser._id == userId){
+                if(userInfo[i]._id == userId){
                     userInfo.splice(i,1);
+                    break;
                 }
             }
             callback(userInfo);
@@ -69,17 +69,16 @@
 
         function updateUser(userId, user, callback) {
 
+            var result = null;
             for(var i=0;i<userInfo.length;i++){
-                var tempUser = userInfo[i];
-                if(tempUser._id == userId){
-                    tempUser = user;
-                    callback(tempUser);
-                }
+
+                if(userInfo[i]._id == userId){
+                    angular.copy(user,userInfo[i]);
+                    angular.copy(userInfo[i],result);
+                    break;
+}
             }
-            callback(null);
+            callback(result);
         }
-
-
-
     }
 })();
