@@ -27,6 +27,9 @@
                 .when("/forms", {
                     templateUrl: "views/forms/forms.view.html"
                 })
+                .when("/fields", {
+                    templateUrl: "views/forms/form-fields.view.html"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 });
