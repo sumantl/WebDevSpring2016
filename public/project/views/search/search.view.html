@@ -1,0 +1,49 @@
+<!--<form class="form-horizontal" ng-controller="PlaceController">
+    <div class="form-group">
+
+        <div class="col-sm-offset-2 col-sm-10">
+            <input ng-model="search.query" type="text" class="form-control" id="inputSearch" placeholder="Search">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button ng-click="searchPlace(search)" class="btn btn-primary btn-block">Search</button>
+        </div>
+    </div>
+</form>
+-->
+<div >
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <!--
+    <form class="form-horizontal" ng-controller="PlaceController">
+    <div class="form-group">
+    <label for="inputUsername" class="col-sm-2 control-label">Search</label>
+    <div class="col-sm-10">
+        <input ng-model="search.query" type="text" class="form-control" id="inputUsername" placeholder="Username">
+
+    </div>
+</div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button ng-click="searchMap(search)" class="btn btn-primary btn-block">Seacrh</button>
+            </div>
+        </div>
+    </form>
+    -->
+
+    <div id="map"></div>
+    Places {{places}}
+
+    <table class="table table-bordered table-striped">
+    <tr ng-repeat="place in places">
+        <td>
+            {{place.name}}
+        </td>
+    </tr>
+    </table>
+</div>
+
+
+
