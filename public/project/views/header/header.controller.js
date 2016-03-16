@@ -5,6 +5,13 @@
 
     function HeaderController($scope,$rootScope) {
 
+        $scope.logout = logout;
+
+        function logout(){
+
+            $rootScope.user=null;
+        }
+
 
     }
 })();

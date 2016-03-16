@@ -20,6 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+    <script src="js/oauth-signature.min.js"></script>
 
 
     <script src="app.js"></script>
@@ -27,6 +28,7 @@
     <script src="views/main/main.controller.js"></script>
     <script src="views/header/header.controller.js"></script>
     <script src="views/search/places.controller.js"></script>
+    <script src="views/search/food.controller.js"></script>
     <script src="services/googleplaces.services.js"></script>
     <script src="services/user.service.client.js"></script>
     <script src="services/restaurant.services.js"></script>
@@ -34,6 +36,8 @@
     <script src="services/itinerary.services.js"></script>
     <script src="services/destination.services.js"></script>
     <script src="services/comments.services.js"></script>
+    <script src="services/yelp.services.js"></script>
+    <script src="views/search/food.detail.controller.js"></script>
 
     <script src="views/admin/restaurant.controller.js"></script>
     <script src="views/admin/recipe.controller.js"></script>
@@ -67,15 +71,12 @@
 
 <body ng-controller="MainController">
 
+
+<div ng-include="'views/header/header.view.html'"></div>
+<br><br><br><br>
 <div class="container-fluid">
-
- <div class="row">
-     <div ng-include="'views/header/header.view.html'"></div><br><br><br>
-    </div>
-    <div class="row">
-
-        <div ng-view></div>
-
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div ng-view></div>
 
     </div>
 

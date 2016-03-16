@@ -1,49 +1,56 @@
-<!--<form class="form-horizontal" ng-controller="PlaceController">
+<!--<form class="form-horizontal">
     <div class="form-group">
 
-        <div class="col-sm-offset-2 col-sm-10">
-            <input ng-model="search.query" type="text" class="form-control" id="inputSearch" placeholder="Search">
+        <div class="col-sm-10">
+            <input ng-model="query" type="text" class="form-control" id="inputSearch" placeholder="Search">
         </div>
     </div>
-
-
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button ng-click="searchPlace(search)" class="btn btn-primary btn-block">Search</button>
+   <div class="form-group">
+        <div class="col-sm-10">
+            <button ng-click="search(query)" class="btn btn-primary btn-block">Search</button>
         </div>
     </div>
 </form>
 -->
-<div >
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <!--
-    <form class="form-horizontal" ng-controller="PlaceController">
-    <div class="form-group">
-    <label for="inputUsername" class="col-sm-2 control-label">Search</label>
+<form class="form-horizonatal">
     <div class="col-sm-10">
-        <input ng-model="search.query" type="text" class="form-control" id="inputUsername" placeholder="Username">
-
-    </div>
-</div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button ng-click="searchMap(search)" class="btn btn-primary btn-block">Seacrh</button>
-            </div>
+            <button ng-click="search(query)" class="btn btn-primary btn-block">View Details</button>
         </div>
-    </form>
-    -->
+    </div>
 
-    <div id="map"></div>
-    Places {{places}}
+</form>
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
 
-    <table class="table table-bordered table-striped">
-    <tr ng-repeat="place in places">
-        <td>
-            {{place.name}}
-        </td>
-    </tr>
-    </table>
-</div>
+<div class="col-md-4" id="map"></div>
 
-
+<div class="col-md-8">
+        <h3>Search Results</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price Level</th>
+                    <th>Rating</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="place in scopePlaceList">
+                    <td>
+                        <a href="#/placedetail/{{place.id}}">
+                            {{place.name}}
+                        </a>
+                    </td>
+                    <td>
+                        {{place.price_level}}
+                    </td>
+                    <td>
+                        {{place.rating}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 

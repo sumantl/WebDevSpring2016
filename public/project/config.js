@@ -43,6 +43,22 @@
                 .when("/comments", {
                     templateUrl: "views/admin/comments.view.html"
                 })
+                .when("/food", {
+                    templateUrl: "views/search/food.view.html",
+                    controller: "FoodSearchController"
+                })
+                .when("/food/:query", {
+                    templateUrl: "views/search/food.view.html",
+                    controller: "FoodSearchController"
+                })
+                .when("/detail/:foodId", {
+                    templateUrl: "views/search/food.detail.view.html",
+                    controller: "FoodDetailController"
+                })
+                .when("/placedetail/:placeId", {
+                    templateUrl: "views/search/place.detail.view.html",
+                    controller: "PlaceDetailController"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 });
