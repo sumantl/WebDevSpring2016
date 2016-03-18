@@ -37,6 +37,10 @@ module.exports = function() {
         }
 
     }
+
+    function  temp(){
+
+    }
     function findUserByUserName(userName) {
 
         for(var i = 0; i < userInfo.length; i++){
