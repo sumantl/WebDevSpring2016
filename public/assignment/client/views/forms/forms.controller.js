@@ -20,8 +20,10 @@
 
         function getUserForms(userId) {
 
-            FormService.findAllFormsForUser(userId, function (response) {
-                angular.copy(response, currentUserForms);
+            FormService
+                .findAllFormsForUser(userId)
+                .then(function (response){
+                angular.copy(response.data, currentUserForms);
             });
         }
 
@@ -34,43 +36,39 @@
         }
 
         $scope.addForm = function (form) {
-            FormService.createFormForUser(
-                currentUser._id,
-                form,
-                function (response) {
-                    currentUserForms.push(response);
+            FormService
+                .createFormForUser(currentUser._id, form)
+                .then(function (response) {
+                    currentUserForms.push(response.data);
                     $scope.form = {};
                     $scope.selIndex = null;
-                }
-            )
-        };
+                });
+            };
 
         $scope.updateForm = function (newForm) {
 
             console.log("update"+newForm._id);
-            FormService.updateFormById(newForm._id, newForm, function (response) {
-                getUserForms(currentUser._id);
+            FormService
+                .updateFormById(newForm._id, newForm)
+                .then(function (response){
+                    getUserForms(currentUser._id);
             });
             $scope.form={};
         };
 
         $scope.deleteForm = function (index) {
 
+            FormService
+                .deleteFormById(currentUserForms[index]._id)
+                .then(function (response){
+                    getUserForms(currentUser._id);
 
-            FormService.deleteFormById(currentUserForms[index]._id, function (response) {
-                getUserForms(currentUser._id);
-            });
+                });
             $scope.form={};
         };
 
         $scope.selectForm = function (index) {
             $scope.selIndex = index;
-            /*
-            console.log(index);
-            console.log(currentUserForms[index]._id);
-            console.log(currentUserForms[index].title);
-            console.log(currentUserForms[index].userId);
-            */
             $scope.form = {
                 "_id": currentUserForms[index]._id,
                 "title": currentUserForms[index].title,
