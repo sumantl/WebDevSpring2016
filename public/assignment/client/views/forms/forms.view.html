@@ -4,7 +4,7 @@
 <ul class="nav nav-tabs">
 
     <li class="active"><a href="#/forms">Forms</a></li>
-    <li><a href="#fields">Fields</a></li>
+    <li><a href="#/fields">Fields</a></li>
 
 </ul>
 <div class="table-responsive">
@@ -31,7 +31,7 @@
     <tr ng-repeat="form in forms"
         ng-class="{'success' : $index == selectedFormIndex}">
         <td>
-            {{form.title}}
+            <a href="#/form/{{form._id}}/fields">{{form.title}}</a>
         </td>
         <td>
             <a ng-click="deleteForm($index)" class="glyphicon glyphicon-remove"></a>

@@ -1,0 +1,121 @@
+<h1 class="page-header">Forms : Registration Form</h1>
+
+<ul class="nav nav-tabs">
+
+    <li><a href="#/forms">Forms</a></li>
+    <li class="active"><a href="#/fields">Fields</a></li>
+
+</ul>
+
+<div class="panel-body" ng-controller="FieldController">
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+
+            <div class="row" ng-repeat="field in model.fields">
+
+                <div ng-switch="field.type">
+
+                    <div ng-switch-when="TEXT">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label for="inputFirstName" class="control-label">{{field.label}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="inputFirstName" placeholder={{field.placeholder}}>
+                            </div>
+                            <div class="col-sm-4">
+
+                            </div>
+                            <div class="col-sm-4">
+                                <a href="#" class="glyphicon glyphicon-pencil"></a>
+                                <a href="#" class="glyphicon glyphicon-plus"></a>
+                                <a href="#" class="glyphicon glyphicon-remove"></a>
+                                <a href="#" class="glyphicon glyphicon-align-justify"></a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div ng-switch-when="OPTIONS">
+
+                        <div class="row">
+                            <div class="col-sm-4" ng-repeat="option in field.options">
+                                <input type="checkbox" id="inputAdmin" value={{option.value}}>{{option.label}}<br>
+
+
+                            </div>
+                            <div class="col-sm-4">
+
+                            </div>
+                            <div class="col-sm-4">
+                                <a href="#" class="glyphicon glyphicon-pencil"></a>
+                                <a href="#" class="glyphicon glyphicon-plus"></a>
+                                <a href="#" class="glyphicon glyphicon-remove"></a>
+                                <a href="#" class="glyphicon glyphicon-align-justify"></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <select ng-model="model.fieldType">
+                            <option id="field" value="singleLineText">Single Line Text</option>
+                            <option id="field" value="multiLineText">Multi Line Text</option>
+                            <option id="field" value="date">Date Field</option>
+                            <option id="field" value="dropDown">Drop Down</option>
+                            <option id="field" value="radio">Radio Button</option>
+                            <option id="field" value="checkBox">Check Box</option>
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="glyphicon glyphicon-plus btn-primary" ng-click="addField(model.fieldType)"></button>
+                    </div>
+                </div>
+
+
+
+        </div>
+    </div>
+    <!--
+    <div class="tab-pane" id="tab2">
+        <div class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    -->
+</div>
+

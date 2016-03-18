@@ -6,9 +6,9 @@
     function FormController($scope, $rootScope, $location, FormService) {
 
         $scope.selIndex = null;
-        $scope.forms = [];
+        $rootScope.forms = [];
         var currentUser = $rootScope.user;
-        var currentUserForms = $scope.forms;
+        var currentUserForms = $rootScope.forms;
 
 
         function initialiseForms() {
@@ -23,8 +23,13 @@
             FormService
                 .findAllFormsForUser(userId)
                 .then(function (response){
+
                 angular.copy(response.data, currentUserForms);
+                    console.log(currentUserForms);
             });
+
+
+
         }
 
         function getFormId(formTitle) {
