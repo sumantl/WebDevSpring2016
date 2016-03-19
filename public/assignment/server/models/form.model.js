@@ -7,7 +7,15 @@ module.exports = function() {
         createFormForUser: createFormForUser,
         findAllFormsForUser: findAllFormsForUser,
         deleteFormById: deleteFormById,
-        updateFormById: updateFormById
+        updateFormById: updateFormById,
+        updateField: updateField,
+        getField: getField,
+        getFieldById :getFieldById,
+        deleteField : deleteField,
+        deleteFieldById : deleteFieldById,
+        createFieldForForm : createFieldForForm,
+        updateFieldForForm : updateFieldForForm
+
     };
     return api;
 
@@ -85,16 +93,21 @@ module.exports = function() {
     function  deleteField(formId, fieldId) {
 
         for (var i = 0; i < formInfo.length; i++) {
-            if (formInfo[i]._id == formId)
-                deleteField(formInfo[i].fields, fieldId)
+            if (formInfo[i]._id == formId) {
+                deleteFieldById(i, fieldId)
+                console.log("form found");
+            }
         }
         return formInfo;
     }
 
-    function deleteFieldById(fields, fieldId) {
-        for (var i = 0; i < fields.length; i++) {
-            if (fields[i]._id == fieldId)
-                fields.splice(i, 1);
+    function deleteFieldById(index, fieldId) {
+       // console.log(fields);
+        for (var i = 0; i < formInfo[index].fields.length; i++) {
+            if (formInfo[index].fields[i]._id == fieldId) {
+                formInfo[index].fields.splice(i, 1);
+                console.log("filed");
+            }
         }
     }
 
