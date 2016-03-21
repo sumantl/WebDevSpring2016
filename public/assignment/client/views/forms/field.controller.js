@@ -56,6 +56,12 @@
                 })
         };
 
+        $scope.modifyField = function(field){
+            console.log(field);
+            $scope.modal = field;
+            $scope.modal.options = JSON.stringify(field.options);
+        }
+
         $scope.addField = function(fieldType){
 
             switch (fieldType){
