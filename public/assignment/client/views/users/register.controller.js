@@ -11,9 +11,10 @@
                 function(response){
                     $rootScope.user=response;
                     console.log($rootScope.user);
+                    $location.path('/profile');
                 }
-            )
-            $location.path('/profile');
+            );
+
 
         }
     };

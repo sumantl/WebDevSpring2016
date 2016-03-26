@@ -7,6 +7,8 @@
 
         $scope.update=function(user){
 
+            console.log("Profile Controller");
+
             var userId=$rootScope.user._id;
             UserService.updateUser(userId,user,
                 function(response){

@@ -60,7 +60,11 @@
 
         function updateUser(userId, user) {
 
-            return $http.put('/api/assignment/user/'+userId,user);
+            console.log(123);
+
+            return $http.put('/api/user/' + userId, user);
+
+        }
             /*
             var result = null;
             for(var i=0;i<userInfo.length;i++){
@@ -74,6 +78,6 @@
             // callback(result);
             */
 
-        }
+
     }
 })();
