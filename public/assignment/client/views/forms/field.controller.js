@@ -28,8 +28,6 @@
                 .findAllFormsForUser(userId)
                 .then(function (response){
                     angular.copy(response.data, currentUserForms);
-                    //$scope.model.fields = currentUserFields;
-                   // console.log(currentUserForms);
                     getFormFields();
                 });
         }
@@ -59,6 +57,7 @@
         $scope.modifyField = function(field){
             console.log(field);
             $scope.modal = field;
+
             $scope.modal.options = JSON.stringify(field.options);
         }
 
