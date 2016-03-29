@@ -11,7 +11,8 @@
             getFieldsForForm: getFieldsForForm,
             getFieldForForm: getFieldForForm,
             deleteFieldFromForm: deleteFieldFromForm,
-            updateField : updateField
+            updateField : updateField,
+            updateAllFields:updateAllFields
         };
         return api;
 
@@ -42,6 +43,10 @@
         function updateField(formId, fieldId, form){
 
             return $http.put('/api/assignment/form/'+formId+'/field/'+fieldId, form);
+        }
+
+        function updateAllFields(formId, field){
+            return $http.put('/api/assignment/form/'+formId+'/field', field);
         }
 
 

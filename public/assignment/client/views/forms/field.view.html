@@ -83,6 +83,8 @@
                 </div>
             </div>
 
+
+            <div ui-sortable="sortableOptions" ng-model="model.fields">
             <div class="row" ng-repeat="field in model.fields">
                 <div ng-switch="field.type">
 
@@ -138,6 +140,7 @@
 
                     </div>
                 </div>
+            </div>
             </div>
             <br>
             <div class="row">

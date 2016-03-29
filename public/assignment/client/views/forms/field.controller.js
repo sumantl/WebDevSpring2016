@@ -6,9 +6,14 @@
     function FieldController($scope, $routeParams, $rootScope, $location, FormService, FieldService) {
 
         var currentUser = $rootScope.user;
+
+        var tempList = [];
+
+
         $scope.model= {};
         var currentUserFields = [];
         var currentUserForms = [];
+
 
         var formId = $routeParams.formId;
         console.log("Form id "+formId);
@@ -37,9 +42,11 @@
             console.log("Inside getFormFields");
             for(var i=0; i< currentUserForms.length;i++){
                 if(currentUserForms[i]._id == formId){
+                    tempList = [];
                     console.log("Inside if");
                     console.log(currentUserForms[i].fields);
-                    $scope.model.fields = currentUserForms[i].fields;
+                    tempList = currentUserForms[i].fields;
+                    $scope.model.fields = tempList;
                     break;
                 }
             }
@@ -136,6 +143,34 @@
 
             }
             }
+
+
+        $scope.sortableOptions = {
+            update: function (e, ui) {
+                var logEntry = tempList.map(function (i) {
+
+                    return i;
+                }).join(', ');
+                //$scope.sortingLog.push('Update: ' + logEntry);
+            },
+            stop: function (e, ui) {
+                // this callback has the changed model
+                var logEntry = tempList.map(function (i) {
+
+                    return i;
+                }).join(', ');
+                //$scope.sortingLog.push('Stop: ' + logEntry);
+                FieldService.updateAllFields(formId, tempList).
+                    then(function (response){
+                   // console.log(response);
+                   // $scope.model.fields = response.data;
+
+                })
+
+                ;
+            }
+
+        };
 
 
 

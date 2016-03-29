@@ -35,6 +35,10 @@
                     templateUrl: "views/forms/field.view.html",
                     controller: "FieldController"
                 })
+                .when("/sort", {
+                    templateUrl: "views/forms/sortable.html",
+                    controller: "sortableController"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 });

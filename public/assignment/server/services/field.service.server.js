@@ -7,6 +7,7 @@ module.exports = function(app){
     app.delete('/api/assignment/form/:formId/field/:fieldId', deleteField);
     app.put('/api/assignment/form/:formId/field/:fieldId', updateFieldForForm);
     app.post('/api/assignment/form/:formId/field', createFieldForForm);
+    app.put('/api/assignment/form/:formId/field', updateAllFieldsForForm);
 
     function  getField(req, res){
         var formId = req.params.formId;
@@ -38,6 +39,16 @@ module.exports = function(app){
 
         res.json(formAccess.updateFieldForForm(formId, fieldId, field));
 
+    }
+
+    function updateAllFieldsForForm(req, res){
+        var formId = req.params.formId;
+        var field = req.body;
+        console.log("************************************");
+
+        console.log(field);
+
+        res.json(formAccess.updateFieldForForm(formId, null, field));
     }
 
 

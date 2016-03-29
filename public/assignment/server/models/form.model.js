@@ -130,7 +130,15 @@ module.exports = function() {
         var tempField = {};
         for (var i = 0; i < formInfo.length; i++) {
             if (formInfo[i]._id == formId);
-                return updateField(formInfo[i].fields, fieldId, field);
+                if(fieldId)
+                    return updateField(formInfo[i].fields, field);
+                else{
+                    formInfo[i].fields = field;
+                    return formInfo[i].fields;
+                }
+
+
+
 
         }
     }
