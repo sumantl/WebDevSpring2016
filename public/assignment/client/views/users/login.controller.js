@@ -11,7 +11,9 @@
             UserService
                 .findUserByCredentials(user.username, user.password)
                 .then(function(response){
-                    console.log("res "+response.data.username);
+
+                    console.log(response);
+
                     var empty={};
                     if (response.data.username == null){
                         $location.path('/login');

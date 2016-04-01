@@ -59,10 +59,12 @@
         }
 
         function updateUser(userId, user) {
+            console.log("Update Ser");
+            console.log(user);
 
-            console.log(123);
 
-            return $http.put('/api/user/' + userId, user);
+
+            return $http.put('/api/assignment/user/' + userId, user);
 
         }
             /*

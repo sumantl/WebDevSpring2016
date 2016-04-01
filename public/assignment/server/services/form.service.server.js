@@ -1,6 +1,6 @@
-var formAccess = require("../models/form.model.js")();
+//var formAccess = require("../models/form.model.js")();
 
-module.exports = function(app){
+module.exports = function(app, formModel){
     app.get('/api/assignment/user/:userId/form',findAllFormsForUser);
     app.get('/api/assignment/form/:formId',findAllFormsForUser);
     app.post('/api/assignment/user/:userId/form', createFormForUser);
@@ -9,17 +9,32 @@ module.exports = function(app){
 
     function findAllFormsForUser(req, res){
         var userId = req.params.userId;
-        res.json(formAccess.findAllFormsForUser(userId));
+        console.log(userId);
+                    formModel
+                .findAllFormsForUser(userId)
+                .then(function(forms){
+                        console.log(forms);
+                        res.json(forms);
+                } );
     }
 
     function  deleteFormById(req, res){
-        res.json(formAccess.deleteFormById(req.params.formId));
+       // res.json(formAccess.deleteFormById(req.params.formId));
 
     }
 
     function  createFormForUser(req, res){
         var tempUser = req.body;
-        res.json(formAccess.createFormForUser(req.params.userId, tempUser));
+
+
+        formModel
+            .createFormForUser(req.params.userId, tempUser)
+            .then(function (form){
+                console.log("form");
+                console.log(form);
+                res.json(form);
+            })
+        //res.json(formAccess.createFormForUser(req.params.userId, tempUser));
 
     }
 
@@ -28,7 +43,7 @@ module.exports = function(app){
         var tempForm = req.body;
         console.log("Form "+tempForm._id+" Req param "+req.params.formId);
 
-        res.json(formAccess.updateFormById(req.params.formId, tempForm));
+        //res.json(formAccess.updateFormById(req.params.formId, tempForm));
 
     }
 
