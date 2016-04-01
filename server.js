@@ -7,7 +7,7 @@ var app = express();
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 var connectionString = "mongodb://localhost/form-maker";
-var db = mongoose.connect(connectionString);
+
 
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
@@ -17,6 +17,8 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
         process.env.OPENSHIFT_APP_NAME;
 }
+
+var db = mongoose.connect(connectionString);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -19,8 +19,13 @@ module.exports = function(app, formModel){
     }
 
     function  deleteFormById(req, res){
-       // res.json(formAccess.deleteFormById(req.params.formId));
+       //res.json(formAccess.deleteFormById());req.params.formId
+        formModel
+            .deleteFormById(req.params.formId)
+            .then(function(forms){
 
+                res.json(forms);
+            } );
     }
 
     function  createFormForUser(req, res){

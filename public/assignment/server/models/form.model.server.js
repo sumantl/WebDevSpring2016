@@ -77,14 +77,24 @@ module.exports = function(db, mongoose) {
     }
 
     function  deleteFormById(formId){
-        for (var i = 0; i < formInfo.length; i++) {
-            if (formInfo[i]._id == formId) {
-                formInfo.splice(i, 1);
 
-            }
-        }
+        var deferred = q.defer();
 
-        return formInfo;
+        Form.remove(
+            {'_id' : formId},
+            function(err, forms){
+                if(err){
+                    console.log("delete all forms error");
+                }
+                else{
+                    console.log("success");
+                    console.log(forms);
+                    }
+
+            });
+        return deferred.promise;
+
+
     }
 
     function  updateFormById(formId, newForm){
