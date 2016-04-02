@@ -69,13 +69,12 @@ module.exports = function(db, mongoose) {
     }
 
     function createUser(user) {
-        var tempUser = {};
-        angular.copy(user, tempUser);
-        tempUser._id = uuid.v1();
+
+        user._id = uuid.v1();
 
         var deferred = q.defer();
 
-        User.create(tempUser,
+        User.create(user,
             function(err, user){
                 deferred.resolve(user);
             });

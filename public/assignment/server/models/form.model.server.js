@@ -66,10 +66,7 @@ module.exports = function(db, mongoose) {
                     console.log("find all forms error");
                 }
                 else{
-                    console.log("success");
-                    console.log(forms);
 
-                    console.log("success");
                     deferred.resolve(forms);
                 }
             });
@@ -88,7 +85,7 @@ module.exports = function(db, mongoose) {
                 }
                 else{
                     console.log("success");
-                    console.log(forms);
+                    deferred.resolve(findAllFormsForUser(forms.userId));
                     }
 
             });
@@ -98,16 +95,31 @@ module.exports = function(db, mongoose) {
     }
 
     function  updateFormById(formId, newForm){
-        var result  = null;
-        for(var i=0; i<formInfo.length; i++){
-            if(formInfo[i]._id == formId){
 
-                formInfo[i]=newForm;
-                result =formInfo[i];
+        var deferred = q.defer();
+        delete newForm._id;
 
-            }
-        }
-        return result;
+        Form.update(
+            {'_id' : formId},
+            {$set : newForm},
+            function(err, forms){
+                if(err){
+                    console.log("update all forms error");
+                    console.log(err);
+                }
+                else{
+                    console.log("success");
+                    console.log(forms);
+                    Form.findOne({"_id" : formId},
+                    function(err, user){
+                       console.log(user);
+                        deferred.resolve(user);
+                    });
+                }
+
+            });
+        return deferred.promise;
+
     }
 
     //*******************************************************************//

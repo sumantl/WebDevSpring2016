@@ -39,7 +39,14 @@ module.exports = function(app, userModel){
 
     function  createUser(req, res){
         var tempUser = req.body;
-        res.json(userAccess.creatUser(tempUser));
+        userModel
+            .createUser(tempUser)
+            .then(function (user){
+                res.json(user);
+            });
+
+        //
+        // res.json(userAccess.creatUser(tempUser));
 
     }
 
