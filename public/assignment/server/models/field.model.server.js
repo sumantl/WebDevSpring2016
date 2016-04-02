@@ -2,31 +2,23 @@ var q = require("q");
 
 module.exports = function(db, mongoose) {
 
-    var formSchema = require('./form.schema.server.js')(mongoose);
+    var fieldSchema = require('./field.schema.server.js')(mongoose);
 
-    var Form = mongoose.model('Form',formSchema);
+    var Field = mongoose.model('Field',fieldSchema);
 
 
 
     var api = {
-        createFormForUser: createFormForUser,
-        findAllFormsForUser: findAllFormsForUser,
-        deleteFormById: deleteFormById,
-        updateFormById: updateFormById,
-        findFormById : findFormById
+        updateField: updateField,
+        getField: getField,
+        getFieldById :getFieldById,
+        deleteField : deleteField,
+        deleteFieldById : deleteFieldById,
+        createFieldForForm : createFieldForForm,
+        updateFieldForForm : updateFieldForForm
+
     };
     return api;
-
-    function findFormById(formId){
-        var deferred = q.defer();
-        Form.findOne({"_id" : formId},
-            function(err, user){
-                console.log(user);
-                deferred.resolve(user);
-            });
-
-        return deferred.promise;
-    }
 
     function createFormForUser(userId, form){
 
@@ -47,7 +39,6 @@ module.exports = function(db, mongoose) {
                 }
                 else{
                     console.log("form inserted");
-                    console.log(form);
                     deferred.resolve(form);
                 }
             });
@@ -91,7 +82,7 @@ module.exports = function(db, mongoose) {
                 else{
                     console.log("success");
                     deferred.resolve(findAllFormsForUser(forms.userId));
-                    }
+                }
 
             });
         return deferred.promise;
@@ -116,10 +107,10 @@ module.exports = function(db, mongoose) {
                     console.log("success");
                     console.log(forms);
                     Form.findOne({"_id" : formId},
-                    function(err, user){
-                       console.log(user);
-                        deferred.resolve(user);
-                    });
+                        function(err, user){
+                            console.log(user);
+                            deferred.resolve(user);
+                        });
                 }
 
             });
@@ -151,15 +142,26 @@ module.exports = function(db, mongoose) {
 
     }
 
-    function  deleteField(formId, fieldId) {
+    function  deleteField (fieldId) {
 
-        for (var i = 0; i < formInfo.length; i++) {
-            if (formInfo[i]._id == formId) {
-                deleteFieldById(i, fieldId)
-                console.log("form found");
-            }
-        }
-        return formInfo;
+        var deferred = q.defer();
+
+        Field.remove(
+            {'_id' : fieldId},
+            function(err, field){
+                if(err){
+                    console.log("delete all field error");
+                     console.log(err);
+                }
+                else{
+                    console.log("success delete field");
+                    deferred.resolve(field);
+                }
+
+            });
+        return deferred.promise;
+
+
     }
 
     function deleteFieldById(index, fieldId) {
@@ -172,19 +174,26 @@ module.exports = function(db, mongoose) {
         }
     }
 
-    function  createFieldForForm(formId, field){
+    function  createFieldForForm(field) {
 
-        var temp ={};
-        field._id = (new Date).getTime();
-        for (var i = 0; i < formInfo.length; i++) {
-            if (formInfo[i]._id == formId) {
-                formInfo[i].fields.push(field);
-                temp = field;
-            }
+        var deferred = q.defer();
 
-        }
-        return temp;
+        delete field._id;
 
+        Field.create(field,
+            function (err, newField) {
+                if (err) {
+                    console.log("field insertion failed");
+                    console.log(err);
+                }
+                else {
+
+                    console.log("field inserted");
+                    console.log(newField);
+                    deferred.resolve(newField);
+                }
+            });
+        return deferred.promise;
     }
 
     function  updateFieldForForm(formId, fieldId, field){

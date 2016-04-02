@@ -76,7 +76,6 @@
                     FieldService
                         .createFieldForForm(formId, field)
                         .then(function (response) {
-
                             getUserForms(currentUser._id);
                         });
                     break;

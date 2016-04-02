@@ -1,6 +1,4 @@
-var formAccess = require("../models/form.model.js")();
-
-module.exports = function(app){
+module.exports = function(app, formModel, fieldModel){
 
     app.get('/api/assignment/form/:formId/field', getField);
     app.get('/api/assignment/form/:formId/field/:fieldId', getField);
@@ -19,16 +17,37 @@ module.exports = function(app){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
 
+        console.log(formId);
+        console.log(fieldId);
+
+        formModel.findFormById(formId)
+            .then(function (form) {
+                fieldModel.deleteField(fieldId)
+                    .then(function (field) {
+                        form.fields.id(fieldId).remove();
+                        form.save();
+                        res.json(form);
+                    });
+            });
+
         console.log(formId+"   "+fieldId);
-        res.json(formAccess.deleteField(formId, fieldId));
+
 
     }
 
-    function createFieldForForm(req, res){
+    function createFieldForForm(req, res) {
         var formId = req.params.formId;
         var field = req.body;
 
-        res.json(formAccess.createFieldForForm(formId, field));
+        formModel.findFormById(formId)
+            .then(function (form) {
+                fieldModel.createFieldForForm(field)
+                    .then(function (field) {
+                        form.fields.push(field);
+                        form.save();
+                        res.json(form);
+                    });
+            });
 
     }
 

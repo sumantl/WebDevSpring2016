@@ -53,7 +53,7 @@ module.exports = function(app, formModel){
                 res.json(form);
             });
 
-        //res.json(formAccess.updateFormById(req.params.formId, tempForm));
+
 
     }
 
