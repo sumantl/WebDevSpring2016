@@ -63,9 +63,6 @@ module.exports = function(app, formModel, fieldModel){
     function updateAllFieldsForForm(req, res){
         var formId = req.params.formId;
         var field = req.body;
-        console.log("************************************");
-
-        console.log(field);
 
         res.json(formAccess.updateFieldForForm(formId, null, field));
     }
