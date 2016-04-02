@@ -13,9 +13,30 @@ module.exports = function(db, mongoose) {
         findAllFormsForUser: findAllFormsForUser,
         deleteFormById: deleteFormById,
         updateFormById: updateFormById,
-        findFormById : findFormById
+        findFormById : findFormById,
+        orderFields : orderFields
     };
     return api;
+
+    function orderFields(formId, newFields){
+        var deferred = q.defer();
+        Form.findById(formId, function (err, form){
+            if(err){
+                console.log("error in reorder");
+            }
+            else{
+                form.fields = newFields;
+                form.save(function(err){
+                    if(err){
+                        console.log("err");
+                        deferred.resolve(form);
+                    }
+                })
+            }
+        });
+
+        return deferred.promise;
+    }
 
     function findFormById(formId){
         var deferred = q.defer();
