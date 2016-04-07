@@ -40,7 +40,7 @@ module.exports = function(app, userModel){
     function  createUser(req, res){
         var tempUser = req.body;
         userModel
-            .createUser(tempUser)
+            .createUser(tempUser    )
             .then(function (user){
                 res.json(user);
             });
