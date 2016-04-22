@@ -12,9 +12,14 @@
 
             var userId=$rootScope.user._id;
             UserService
-                .updateUser(userId,user)
+                .updateUser(user)
                 .then(function(response){
-                    $rootScope.user=response;
+                    UserService
+                        .findUserByUserName(user.username)
+                        .then(function (updatedUser){
+                            console.log(updatedUser);
+                            $rootScope.user = updatedUser.data;
+                        });
                     console.log("Profile");
                 });
 
