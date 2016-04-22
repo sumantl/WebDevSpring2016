@@ -84,7 +84,7 @@ module.exports = function(db, mongoose) {
     function deleteUserById(userId) {
         var deferred = q.defer();
 
-        User.remove(userId,
+        User.remove({'_id' :userId},
             function(err, user){
                 deferred.resolve(user);
             });
