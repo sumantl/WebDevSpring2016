@@ -27,9 +27,6 @@
                 angular.copy(response.data, currentUserForms);
                     console.log(currentUserForms);
             });
-
-
-
         }
 
         function getFormId(formTitle) {

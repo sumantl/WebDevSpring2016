@@ -12,10 +12,31 @@
             findUserByUserName : findUserByUserName,
             createUser: createUser,
             deleteUserById: deleteUserById,
-            updateUser: updateUser
+            updateUser: updateUser,
+            login: login,
+            register : register,
+            logout : logout
 
         };
         return api;
+
+
+
+        function logout(){
+            return $http.get('/api/logout');
+        }
+
+
+        function register(user){
+            return $http.post('/api/register',user);
+        }
+
+        function login(user){
+            return $http.post('/api/login',user);
+        }
+
+
+
 
         function findUserByCredentials(username, password) {
 
@@ -36,49 +57,21 @@
 
             return $http.post('/api/assignment/user', user);
 
-            /*var tempUser ={}
-            angular.copy(user,tempUser);
-            tempUser._id = (new Date).getTime();
-            userInfo.push(tempUser);
-            //  callback(tempUser);
-            */
         }
 
         function deleteUserById(userId) {
 
             return $http.delete('/api/assignment/user/'+userId);
-            /*
-            for(var i=0;i<userInfo.length;i++){
-                if(userInfo[i]._id == userId){
-                    userInfo.splice(i,1);
-                    break;
-                }
-            }
-            // callback(userInfo);
-            */
+
         }
 
-        function updateUser(userId, user) {
+        function updateUser(user) {
             console.log("Update Ser");
             console.log(user);
-
-
-
-            return $http.put('/api/assignment/user/' + userId, user);
+            return $http.put('/api/assignment/user/' + user._id, user);
 
         }
-            /*
-            var result = null;
-            for(var i=0;i<userInfo.length;i++){
 
-                if(userInfo[i]._id == userId){
-                    angular.copy(user,userInfo[i]);
-                    angular.copy(userInfo[i],result);
-                    break;
-                }
-            }
-            // callback(result);
-            */
 
 
     }

@@ -11,12 +11,12 @@
             console.log(user);
 
             var userId=$rootScope.user._id;
-            UserService.updateUser(userId,user,
-                function(response){
+            UserService
+                .updateUser(userId,user)
+                .then(function(response){
                     $rootScope.user=response;
                     console.log("Profile");
-                }
-            )
+                });
 
             $location.path('/profile');
             }
