@@ -17,8 +17,6 @@
                     $location.path('/profile');
 
                 });
-
-
         }
     }
 
